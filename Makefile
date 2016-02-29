@@ -1,16 +1,16 @@
 TARGET_NAME       = main
-DEVICE  = atmega8
-F_CPU   = 8000000	# в Герцах
+DEVICE  = atmega328p
+F_CPU   = 16000000	# в Герцах
 
 FUSE_L  = ff
 FUSE_H  = 09
 
-AVREAL=avreal +ATmega8 -p1 -as -fBLEV=1,BSIZ=0,BOOTRST=0,EESV=1,RSTDSBL=1,WDTON=1,CKOPT=0,BODEN=0,CKSEL=F -o0 -e -w -v -c main.hex
+AVRDUDE=sudo avrdude -C/usr/share/arduino/hardware/tools/avrdude.conf -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -Uflash:w:main.hex:i
  
 CFLAGS  = 
-OBJECTS = main.o
+OBJECTS = main.o uart.o
 
-COMPILE = avr-gcc  -Wall -Os -DF_CPU=$(F_CPU) $(CFLAGS) -mmcu=$(DEVICE)
+COMPILE = avr-gcc -Wall -Os -DF_CPU=$(F_CPU) $(CFLAGS) -mmcu=$(DEVICE)
 NM = avr-nm
 
 # symbolic targets:
@@ -29,7 +29,7 @@ program: flash
 
 # правило для прошивки firmware:
 flash: $(TARGET_NAME).hex
-	$(AVREAL) 
+	$(AVRDUDE) 
 
 # правило для удаления файлов зависимостей (которые могут быть построены утилитой Make):
 clean:

@@ -10,6 +10,8 @@
 #define FALSE         0
 #define TRUE          1
 
+#define LED           5
+
 #define TGLBIT(REG, BIT)   (REG ^= (1 << BIT))
 #define CLRBIT(REG, BIT)   (REG &= ~(1 << BIT))
 #define SETBIT(REG, BIT)   (REG |= (1 << BIT))
@@ -17,13 +19,12 @@
 
 int main(void) 
 {
-// configure PD0 for output and blink
-	DDRB = 1;
-	PORTB = 1;
+	SETBIT(DDRB, LED);
+	SETBIT(PORTB,LED);
 
 	while (1) {
 		_delay_ms(500);		
-		TGLBIT(PORTB,0);
+		TGLBIT(PORTB,LED);
 	}
 	return 0;
 }

@@ -1,3 +1,5 @@
 *.sym
 *.bin
 *.o
+*.swp
+*.elf
