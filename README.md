@@ -1,6 +1,8 @@
-# Template project for avr gcc toolchain with Makefile.
+# Ski waxing iron.
 
 Goal
 -------
-Use this project for quick start with avr-gcc project.
+Skiing fast )
 
+Upload firmware with avr-dude (use optiboot arduino bootloader)
+avrdude -C/usr/share/arduino/hardware/tools/avrdude.conf -v -v -v -v -patmega328p -carduino -P/dev/ttyUSB2 -b115200 -D -Uflash:w:/tmp/build4688977123459503696.tmp/Blink.cpp.hex:i

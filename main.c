@@ -18,12 +18,12 @@
 int main(void) 
 {
 // configure PD0 for output and blink
-	DDRD = 1;
-	PORTD = 1;
+	DDRB = 1;
+	PORTB = 1;
 
 	while (1) {
 		_delay_ms(500);		
-		TGLBIT(PORTD,0);
+		TGLBIT(PORTB,0);
 	}
 	return 0;
 }
