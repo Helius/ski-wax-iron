@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#define BAUDRATE 19200     //baudrate (18n)
+#define BAUDRATE 57600     //baudrate (18n)
 
 void uart_init(void);
 

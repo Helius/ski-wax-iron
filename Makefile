@@ -1,14 +1,14 @@
-TARGET_NAME       = main
+TARGET_NAME = main
 DEVICE  = atmega328p
-F_CPU   = 16000000	# в Герцах
+F_CPU   = 16000000
 
 FUSE_L  = ff
 FUSE_H  = 09
 
 AVRDUDE=sudo avrdude -C/usr/share/arduino/hardware/tools/avrdude.conf -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -Uflash:w:main.hex:i
  
-CFLAGS  = 
-OBJECTS = main.o uart.o
+CFLAGS  = -std=gnu99
+OBJECTS = main.o uart.o DS18S20Library/ds18S20.o
 
 COMPILE = avr-gcc -Wall -Os -DF_CPU=$(F_CPU) $(CFLAGS) -mmcu=$(DEVICE)
 NM = avr-nm
