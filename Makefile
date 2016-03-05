@@ -7,7 +7,7 @@ FUSE_H  = 09
 
 AVRDUDE=sudo avrdude -C/usr/share/arduino/hardware/tools/avrdude.conf -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -Uflash:w:main.hex:i
  
-CFLAGS  = -std=gnu99
+CFLAGS  = -std=gnu99 -ffunction-sections -fdata-sections -Wl,-gc-sections 
 OBJECTS = main.o uart.o DS18S20Library/ds18S20.o
 
 COMPILE = avr-gcc -Wall -Os -DF_CPU=$(F_CPU) $(CFLAGS) -mmcu=$(DEVICE)
