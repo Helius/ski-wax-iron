@@ -135,7 +135,7 @@ ISR(TIMER1_COMPA_vect)
 		ds_cnt = 0;
 		ds_tempr = ds_get_result();
 		ds_start_conversion();
-		ustavka = (adj_val * 140)/180;
+		ustavka = 80 + (adj_val * 70)/180;
 		do_pid();
 	}
 
@@ -188,7 +188,7 @@ void do_pid()
 		intg += integral[i];
 	}
 	
-	if ((first_start < 2) && (tr_tempr > 140*16) && (ds_tempr > 140*16)) {
+	if ((first_start < 2) || (tr_tempr > 150*16) || (ds_tempr > 150*16) || (adj_val < 2)) {
 		out = 0;
 	} else {
 		out = diff/Kprop + pr/Kdiff;// + intg/Kintg;
